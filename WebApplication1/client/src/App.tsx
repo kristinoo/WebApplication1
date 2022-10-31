@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
+import { AuthContext, AuthContextProvider } from "./contexts/AuthContext";
+import AuthPage from "./pages/AuthPage";
+import { Grid } from "@mui/material";
+import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import Menu from "./components/Menu";
+import Footer from "./components/Footer";
+
 
 function App() {
+  const { isAuthenticated } = useContext(AuthContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Grid
+      container
+      spacing={2}
+      direction="row"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: '100vh' }}>
+      <Menu />
+      <Grid
+        item
+        container
+        xs={12}
+        direction="row"
+        alignItems="center"
+        justifyContent="center">
+        {
+          !isAuthenticated && <AuthPage />
+        }
+      </Grid>
+      <Footer />
+    </Grid>
+  )
 }
 
 export default App;

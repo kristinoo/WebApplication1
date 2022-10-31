@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Arch.EntityFrameworkCore.SqlServer" Version="2.1.15" />
     <PackageReference Include="Mocoding.AspNetCore.Spa" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="client\src\components\" />
   </ItemGroup>
 
 </Project>

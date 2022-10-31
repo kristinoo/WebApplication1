@@ -44,6 +44,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Arch.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.1.15, )"
+            },
             "Mocoding.AspNetCore.Spa": {
               "target": "Package",
               "version": "[1.0.4, )"
