@@ -8,7 +8,7 @@ class AuthRepository extends Repository<AuthInput, AuthInfo> {
     }
 
     async login(authInput: AuthInput) {
-        let result = await super.getWithData("login", authInput);
+        let result = await super.postWithData("login", authInput);
         return result;
     }
 

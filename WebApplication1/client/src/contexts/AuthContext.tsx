@@ -5,13 +5,9 @@ import AuthInput from "../objects/AuthInput"
 import authRepository from "../repositories/AuthRepository"
 
 interface IAuthContext {
-    // Авторизован ли пользователь
     isAuthenticated: boolean,
-    // Роль пользователя
     role: RoleType,
-    // Авторизация
     login: (login: string, password: string) => void
-    // Выход
     logout: () => void
 }
 

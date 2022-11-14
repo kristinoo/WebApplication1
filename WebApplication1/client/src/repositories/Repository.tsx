@@ -17,19 +17,6 @@ class Repository<I, O> {
             .then((data: O) => { return data });
     }
 
-    protected getWithData(method: string, data: I): Promise<O> {
-        let route = this.route + "/" + method;
-
-        return fetch(route,
-            {
-                method: "GET",
-                body: JSON.stringify(data)
-            })
-            .then((response) => response.json())
-            .catch((err) => { throw err })
-            .then((data: O) => { return data });
-    }
-
     protected post(method: string): Promise<O> {
         let route = this.route + "/" + method;
 
@@ -44,11 +31,16 @@ class Repository<I, O> {
 
     protected postWithData(method: string, data: I): Promise<O> {
         let route = this.route + "/" + method;
+        console.log(route);
 
         return fetch(route,
             {
                 method: "POST",
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                headers: {
+                    'Accept': 'application/json, text/plain',
+                    'Content-Type': 'application/json;charset=UTF-8'
+                }
             })
             .then((response) => response.json())
             .catch((err) => { throw err })

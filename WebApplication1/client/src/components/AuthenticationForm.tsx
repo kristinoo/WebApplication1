@@ -3,8 +3,27 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Typography } from '@mui/material';
+import AuthInput from "../objects/AuthInput";
+import React from "react";
+import authRepository from "../repositories/AuthRepository";
+
 
 const AuthenticationForm = () => {
+
+    const loginRef: React.RefObject<HTMLInputElement> = React.createRef();
+    const passwordRef: React.RefObject<HTMLInputElement> = React.createRef();
+
+    const handleLogin = () => {
+        const authInput: AuthInput = {
+            login: loginRef.current?.value ?? "",
+            password: passwordRef.current?.value ?? ""
+        }
+
+        console.log(authInput);
+
+        authRepository.login(authInput)
+    }
+
 
     return (
         <Box
@@ -27,17 +46,17 @@ const AuthenticationForm = () => {
                 justifyContent="center">
                 <Grid item>
                     <Typography variant="h5">
-                        Авторизация
+                        Authentication
                     </Typography>
                 </Grid>
                 <Grid item width={300}>
-                    <TextField id="standard-basic" label="Логин" variant="standard" fullWidth />
+                    <TextField id="standard-basic" label="Login" variant="standard" fullWidth inputRef={loginRef} />
                 </Grid>
                 <Grid item width={300}>
-                    <TextField id="standard-basic" label="Пароль" variant="standard" fullWidth type="password" />
+                    <TextField id="standard-basic" label="Password" variant="standard" fullWidth type="password" inputRef={passwordRef} />
                 </Grid>
                 <Grid item>
-                    <Button variant="contained">Войти</Button>
+                    <Button onClick={handleLogin} variant="contained">Log in</Button>
                 </Grid>
             </Grid>
         </Box>
