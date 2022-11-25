@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
 
+
   return (
     <Grid
       container

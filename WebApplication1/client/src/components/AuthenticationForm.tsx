@@ -21,7 +21,11 @@ const AuthenticationForm = () => {
 
         console.log(authInput);
 
-        authRepository.login(authInput)
+        authRepository
+            .login(authInput)
+            .finally(() => {
+                console.log(authRepository.getInfo());
+            });
     }
 
 
