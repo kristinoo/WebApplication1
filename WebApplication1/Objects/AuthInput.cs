@@ -8,11 +8,11 @@
         /// <summary>
         /// Логин
         /// </summary>
-        public string Login { get; set; } = string.Empty;
+        public string login { get; set; } = string.Empty;
 
         /// <summary>
         /// Пароль
         /// </summary>
-        public string Password { get; set; } = string.Empty;
+        public string password { get; set; } = string.Empty;
     }
 }

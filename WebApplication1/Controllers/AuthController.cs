@@ -15,9 +15,9 @@ namespace WebApplication1.Controllers
         [Route("auth/login")]
         public async Task<AuthInfo> Login(AuthInput input)
         {
-            if (input.Login == "test" && input.Password == "admin")
+            if (input.login == "test" && input.password == "admin")
             {
-                await SetCookies(input.Login, RoleType.Admin);
+                await SetCookies(input.login, RoleType.Admin);
                 return AuthInfo.Success(RoleType.Admin);
             }
 
