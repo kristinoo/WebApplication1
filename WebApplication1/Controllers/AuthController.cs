@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
     {
         [HttpPost]
         [Route("auth/login")]
-        public async Task<AuthInfo> Login(AuthInput input)
+        public async Task<AuthInfo> Login([FromBody] AuthInput input)
         {
             if (input.login == "test" && input.password == "admin")
             {
