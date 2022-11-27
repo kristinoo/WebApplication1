@@ -54,7 +54,7 @@ const AuthenticationForm = () => {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box>
+                    <Box component="form" noValidate sx={{ mt: 3 }}>
 
                         <TextField
                             id="standard-basic"
