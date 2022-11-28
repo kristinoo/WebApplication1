@@ -83,7 +83,7 @@ const AuthenticationForm = () => {
                         <Button
                             onClick={handleLogin}
                             variant="contained"
-                            type="submit"
+                            type="button"
                             fullWidth
                             sx={{ mt: 3, mb: 2 }}
                         >
@@ -96,7 +96,7 @@ const AuthenticationForm = () => {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href=".../RegistrationForm" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

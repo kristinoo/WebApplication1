@@ -24,4 +24,4 @@ class RegRepository extends Repository<RegInput, RegInfo> {
 }
 
 const regRepository = new RegRepository();
-export default RegRepository;
+export default regRepository;

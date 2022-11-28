@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import { AuthContext, AuthContextProvider } from "./contexts/AuthContext";
 import AuthPage from "./pages/AuthPage";
+import RegPage from "./pages/RegPage";
 import { Grid } from "@mui/material";
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Menu from "./components/Menu";
 import Footer from "./components/Footer";
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { render } from 'react-dom';
 
 
 function App() {
@@ -15,7 +18,7 @@ function App() {
   return (
     <Grid
       container
-      spacing={2}
+      spacing={2.5}
       direction="row"
       alignItems="center"
       justifyContent="center"
@@ -29,7 +32,7 @@ function App() {
         alignItems="center"
         justifyContent="center">
         {
-          !isAuthenticated && <AuthPage />
+          !isAuthenticated && <RegPage />
         }
       </Grid>
       <Footer />

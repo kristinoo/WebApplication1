@@ -12,9 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import RegInfo from '../objects/RegInfo';
 import RegInput from '../objects/RegInput';
-import RegRepository from '../repositories/RegRepository';
+import regRepository from '../repositories/RegRepository';
 
 const RegistrationForm = () => {
     const firstNameRef: React.RefObject<HTMLInputElement> = React.createRef();
@@ -32,11 +31,11 @@ const RegistrationForm = () => {
 
         console.log(regInput);
 
-        // regRepository
-        //     .login(regInput)
-        //     .finally(() => {
-        //         console.log(regRepository.getInfo());
-        //     });
+        regRepository
+            .login(regInput)
+            .finally(() => {
+                console.log(regRepository.getInfo());
+            });
     }
 
     const theme = createTheme();
@@ -115,7 +114,8 @@ const RegistrationForm = () => {
                             </Grid>
                         </Grid>
                         <Button
-                            type="submit"
+                            onClick={handleSignup}
+                            type="button"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
