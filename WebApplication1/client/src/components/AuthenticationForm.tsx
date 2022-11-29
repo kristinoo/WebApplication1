@@ -8,10 +8,10 @@ import React from "react";
 import authRepository from "../repositories/AuthRepository";
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
-import Link from '@mui/material/Link';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link } from "react-router-dom";
 
 
 const AuthenticationForm = () => {
@@ -91,12 +91,12 @@ const AuthenticationForm = () => {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link to="/restore">
                                     Forgot password?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href=".../RegistrationForm" variant="body2">
+                                <Link to="/reg">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
