@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.Database;
 
 namespace WebApplication1
 {
@@ -26,9 +28,13 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSpaStaticFiles(configuration => {
-                    configuration.RootPath = "client/build";
-                });
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "client/build";
+            });
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(
+                Configuration.GetConnectionString("DefaultConnection")
+            ));
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
@@ -56,15 +62,15 @@ namespace WebApplication1
             app.UseSpaStaticFiles();
 
             app.UseRouting();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-            
+
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "client";
@@ -74,7 +80,7 @@ namespace WebApplication1
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-           
+
         }
     }
 }

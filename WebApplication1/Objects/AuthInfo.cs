@@ -2,37 +2,23 @@
 
 namespace WebApplication1.Objects
 {
-    /// <summary>
-    /// Информация о пользователе
-    /// </summary>
     public class AuthInfo
     {
-        /// <summary>
-        /// Аутенцифицирован ли пользователь
-        /// </summary>
         public bool IsAuthenticated { get; private set; }
 
-        /// <summary>
-        /// Роль пользователя
-        /// </summary>
+        public string LoginName { get; protected set; } = string.Empty;
         public RoleType Role { get; private set; }
 
-        /// <summary>
-        /// Успешная аутентификация
-        /// </summary>
-        public static AuthInfo Success(RoleType role)
+        public static AuthInfo Success(string loginName ,RoleType role)
         {
             return new AuthInfo()
             {
+                LoginName = loginName,
                 IsAuthenticated = true,
                 Role = role
             };
         }
 
-        /// <summary>
-        /// Ошибка аутентификации
-        /// </summary>
-        /// <returns></returns>
         public static AuthInfo Fail()
         {
             return new AuthInfo()

@@ -8,8 +8,10 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { BottomNavigation, BottomNavigationAction, Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,6 +56,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -92,3 +95,7 @@ export default function SearchAppBar() {
     </Box>
   );
 }
+function setValue(newValue: any) {
+  throw new Error('Function not implemented.');
+}
+
