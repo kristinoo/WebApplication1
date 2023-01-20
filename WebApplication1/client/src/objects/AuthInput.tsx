@@ -4,3 +4,6 @@ type AuthInput = {
 }
 
 export default AuthInput;
+
+
+// какой объект отправляем с сервера

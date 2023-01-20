@@ -7,3 +7,5 @@ type AuthInfo = {
 }
 
 export default AuthInfo;
+
+// какой объект получим с сервера
