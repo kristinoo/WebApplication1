@@ -5,4 +5,4 @@ export type PairsInfo = {
     list: Array<Pair>;
 };
 
-// объект записи встречи
+// объект записи встреч
