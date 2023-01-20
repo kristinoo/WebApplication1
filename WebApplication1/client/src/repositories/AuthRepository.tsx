@@ -4,7 +4,11 @@ import Repository from "./Repository";
 
 class AuthRepository extends Repository<AuthInput, AuthInfo> {
     constructor() {
-        super("auth");
+        super("api/auth");
+    }
+
+    async registration(authInput: AuthInput) {
+        return await super.postWithData("reg", authInput);
     }
 
     async login(authInput: AuthInput) {

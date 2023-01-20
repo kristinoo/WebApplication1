@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        [Route("auth/login")]
+        [Route("api/auth/login")]
         public async Task<AuthInfo> Login([FromBody] AuthInput input)
         {
             var login = input.login;
@@ -53,7 +53,9 @@ namespace WebApplication1.Controllers
 
             return AuthInfo.Fail();
         }
-
+        
+        [HttpPost]
+        [Route("api/auth/reg")]
         public async Task<AuthInfo> Registration([FromBody] AuthInput input)
         {
             var login = input.login;
@@ -79,7 +81,7 @@ namespace WebApplication1.Controllers
 
 
         [HttpGet]
-        [Route("auth/logout")]
+        [Route("api/auth/logout")]
         public async Task<AuthInfo> Logout()
         {
             await RemoveCookies();
@@ -87,7 +89,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        [Route("auth/getInfo")]
+        [Route("api/auth/getInfo")]
         public AuthInfo GetInfo()
         {
             if (User?.Identity?.IsAuthenticated ?? false)

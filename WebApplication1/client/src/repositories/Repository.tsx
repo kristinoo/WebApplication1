@@ -2,7 +2,8 @@ class Repository<I, O> {
     route: string;
 
     constructor(route: string) {
-        this.route = route;
+        if (route[0] === "/") this.route = route;
+        else this.route = "/" + route;
     }
 
     protected get(method: string): Promise<O> {
