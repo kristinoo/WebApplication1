@@ -3,35 +3,40 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import AuthInput from "../objects/AuthInput";
+import authRepository from "../repositories/AuthRepository";
+import {useContext} from "react";
+import {AuthContext} from "../contexts/AuthContext";
 
 const RegistrationForm = () => {
+
+    const {registration} = useContext(AuthContext);
+    const navigate = useNavigate();
+    
     const loginRef: React.RefObject<HTMLInputElement> = React.createRef();
     const passwordRef: React.RefObject<HTMLInputElement> = React.createRef();
 
     const handleSignup = () => {
-        // const regInput: RegInput = {
-        //     firstName: loginRef.current?.value ?? "",
-        //     lastName: loginRef.current?.value ?? "",
-        //     login: loginRef.current?.value ?? "",
-        //     password: passwordRef.current?.value ?? ""
-        // }
-        //
-        // console.log(regInput);
-        //
-        // regRepository
-        //     .login(regInput)
-        //     .finally(() => {
-        //         console.log(regRepository.getInfo());
-        //     });
+        const authInput: AuthInput = {
+            login: loginRef.current?.value ?? "",
+            password: passwordRef.current?.value ?? ""
+        }
+
+        console.log(authInput);
+
+        registration(authInput)
+            .then((data) => {
+                if(data.isAuthenticated){
+                    navigate("/edit");
+                }
+            });
     }
 
     const theme = createTheme();
@@ -77,12 +82,6 @@ const RegistrationForm = () => {
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary"/>}
-                                    label="I accept the privacy policy and accept all terms of use."
                                 />
                             </Grid>
                         </Grid>

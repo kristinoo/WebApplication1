@@ -18,7 +18,7 @@ namespace WebApplication1.Controllers
     {
         #region private
 
-        private User? GetUser(string? loginName)
+        private User GetUser(string loginName)
         {
             if (string.IsNullOrEmpty(loginName))
             {
@@ -76,7 +76,7 @@ namespace WebApplication1.Controllers
             {
                 db.Pairs.Add(new Pair
                 {
-                    UserId = user.Id, PairedUserId = u.Id, Rating = 5.0f, Comment = "Nicht vergessen einen Anruf zu machen", Type = "-"
+                    UserId = user.Id, PairUserId = u.Id, Rating = 5.0f, Comment = "Nicht vergessen einen Anruf zu machen", Type = "-"
                 });
             }
 

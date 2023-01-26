@@ -6,6 +6,8 @@ import AuthPage from "./pages/AuthPage";
 import Home from "./pages/Home";
 import RegPage from "./pages/RegPage";
 import PairsPage from "./pages/PairsPage";
+import ProfilePage from "./pages/ProfilePage";
+import ProfileEdit from "./pages/ProfileEdit";
 
 
 const root = ReactDOM.createRoot(
@@ -19,6 +21,8 @@ const router = createBrowserRouter(
             <Route path="/auth" element = {<AuthPage/>}/>
             <Route path="/reg" element = {<RegPage/>}/>
             <Route path="/history" element = {<PairsPage/>}/>
+            <Route path="/profile/*" element = {<ProfilePage/>}/>
+            <Route path="/edit" element = {<ProfileEdit/>}/>
         </Route>
     )
 );

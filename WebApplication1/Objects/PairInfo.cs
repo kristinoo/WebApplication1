@@ -19,7 +19,7 @@ namespace WebApplication1.Objects
         
         public static PairInfo FromModelToObject(Pair record, ApplicationContext db) { 
             var userId = db.Users.Where((user => user.Id.Equals(record.UserId))).First().LoginName;
-            var pairedUserId = db.Users.Where((user => user.Id.Equals(record.PairedUserId))).First().LoginName;
+            var pairedUserId = db.Users.Where((user => user.Id.Equals(record.PairUserId))).First().LoginName;
             return new PairInfo
             {
                 UserId = userId,

@@ -1,5 +1,4 @@
-﻿
-import * as React from 'react';
+﻿import * as React from 'react';
 import {makeStyles, Theme, createStyles} from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -10,13 +9,32 @@ import {Button, FormControl, FormGroup, FormLabel, Grid} from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
-export default function CheckboxesGroup() {
-    const [state, setState] = React.useState({
-        "ищу собеседника": true,
-        "хочу быть ментором": false,
-        "ищу ментора": false,
-    });
+import {profileRepository} from "../repositories/ProfileRepository";
+import {ProfileInput} from "../objects/ProfileInput";
+import authRepository from "../repositories/AuthRepository";
+import {useNavigate} from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
+import {ProfileInfo} from "../objects/ProfileInfo";
 
+export default function CheckboxesGroup() {
+
+    const navigate = useNavigate();
+    const [profile, setProfile] = useState<ProfileInfo>();
+
+    const descriptionRef: React.RefObject<HTMLInputElement> = React.createRef();
+    const interestsRef: React.RefObject<HTMLInputElement> = React.createRef();
+    const knowledgeRef: React.RefObject<HTMLInputElement> = React.createRef();
+    const mentorSearchStatusRef: React.RefObject<HTMLInputElement> = React.createRef();
+    const mentorStatusRef: React.RefObject<HTMLInputElement> = React.createRef();
+    const searchStatusRef: React.RefObject<HTMLInputElement> = React.createRef();
+    
+    useEffect(() => {
+        profileRepository
+            .getProfile()
+            .then((data) => {
+                setProfile(data);
+            })
+    }, []);
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -28,6 +46,21 @@ export default function CheckboxesGroup() {
             searchMentor: data.get('searchMentor'),
             mentor: data.get('mentor')
         });
+
+        const profileInput: ProfileInput = {
+            description: data.get("description")?.toString() ?? "",
+            interests: data.get('interests')?.toString() ?? "",
+            knowledge: data.get('knowledge')?.toString() ?? "",
+            mentorSearchStatus: data.get('searchMentor') != null,
+            mentorStatus: data.get('mentor') != null,
+            searchStatus: data.get('toTalk') != null
+
+        };
+        profileRepository
+            .updateProfile(profileInput)
+            .finally(() => {
+                navigate("/profile");
+            });
     };
 
     return (
@@ -38,41 +71,40 @@ export default function CheckboxesGroup() {
                 </Typography>
 
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
-                    < Grid container spacing={2}>
+                    <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <FormGroup>
-                                <FormControlLabel control={<Checkbox id="toTalk"/>} label="Ищу собеседника"/>
-                                <FormControlLabel control={<Checkbox id="searchMentor"/>} label="Ищу ментора"/>
-                                <FormControlLabel control={<Checkbox id="mentor"/>} label="Ментор"/>
+                                <FormControlLabel control={<Checkbox defaultChecked={(profile?.userProfile?.searchStatus === true)} id="toTalk" name="toTalk"/>}
+                                                  label="Ищу собеседника"/>
+                                <FormControlLabel control={<Checkbox defaultChecked={(profile?.userProfile?.mentorSearchStatus === true)} id="searchMentor" name="searchMentor"/>}
+                                                  label="Ищу ментора"/>
+                                <FormControlLabel control={<Checkbox defaultChecked={(profile?.userProfile?.mentorStatus === true)} id="mentor" name="mentor"/>} label="Ментор"/>
                             </FormGroup>
 
                             <Box>
                                 <TextField
                                     id="interests"
+                                    name="interests"
                                     label="Интересы"
                                     variant="standard"
-                                    fullWidth type="password"
+                                    fullWidth type="text"
                                     margin="normal"
-                                    required
-                                    name="интересы"
                                 />
                                 <TextField
                                     id="knowledge"
+                                    name="knowledge"
                                     label="Знания"
                                     variant="standard"
-                                    fullWidth type="password"
+                                    fullWidth type="text"
                                     margin="normal"
-                                    required
-                                    name="знания"
                                 />
                                 <TextField
                                     id="description"
+                                    name="description"
                                     label="Описание"
                                     variant="standard"
-                                    fullWidth type="password"
+                                    fullWidth type="text"
                                     margin="normal"
-                                    required
-                                    name="описание"
                                 />
                             </Box>
                         </Grid>

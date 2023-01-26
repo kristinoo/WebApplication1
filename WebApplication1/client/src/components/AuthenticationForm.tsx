@@ -1,21 +1,24 @@
-import { Box } from "@mui/system";
+import {Box} from "@mui/system";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
-import { Typography } from '@mui/material';
+import {Button} from "@mui/material";
+import {Typography} from '@mui/material';
 import AuthInput from "../objects/AuthInput";
-import React from "react";
+import React, {useContext} from "react";
 import authRepository from "../repositories/AuthRepository";
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from "react-router-dom";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {Link, useNavigate} from "react-router-dom";
+import {AuthContext} from "../contexts/AuthContext";
 
 
 const AuthenticationForm = () => {
 
+    const {login} = useContext(AuthContext);
+    const navigate = useNavigate();
     const loginRef: React.RefObject<HTMLInputElement> = React.createRef();
     const passwordRef: React.RefObject<HTMLInputElement> = React.createRef();
 
@@ -27,10 +30,11 @@ const AuthenticationForm = () => {
 
         console.log(authInput);
 
-        authRepository
-            .login(authInput)
-            .finally(() => {
-                console.log(authRepository.getInfo());
+        login(authInput)
+            .then((data) => {
+                if(data.isAuthenticated){
+                    navigate("/");
+                }
             });
     }
 
@@ -39,7 +43,7 @@ const AuthenticationForm = () => {
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+                <CssBaseline/>
                 <Box
                     sx={{
                         marginTop: 8,
@@ -48,13 +52,13 @@ const AuthenticationForm = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
+                    <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                        <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Box component="form" noValidate sx={{mt: 3}}>
 
                         <TextField
                             id="standard-basic"
@@ -85,13 +89,13 @@ const AuthenticationForm = () => {
                             variant="contained"
                             type="button"
                             fullWidth
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
                             Sign In
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                
+
                             </Grid>
                             <Grid item>
                                 <Link to="/reg">

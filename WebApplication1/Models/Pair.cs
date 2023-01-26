@@ -12,7 +12,7 @@ namespace WebApplication1.Models
         
         public Guid UserId { get; set; } = Guid.Empty;
         
-        public Guid PairedUserId { get; set; } = Guid.Empty;
+        public Guid PairUserId { get; set; } = Guid.Empty;
 
         public string Type { get; set; } = string.Empty;
 

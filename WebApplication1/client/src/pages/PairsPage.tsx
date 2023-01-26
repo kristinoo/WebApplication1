@@ -1,8 +1,9 @@
-﻿import {Box } from "@mui/material";
-import React from "react";
-import {DataGrid, GridRenderCellParams} from "@mui/x-data-grid";
-import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+﻿import {Box} from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {DataGrid, GridColDef, GridRenderCellParams} from "@mui/x-data-grid";
 import {Link} from "react-router-dom";
+import {parisRepository} from "../repositories/PairsRepository";
+import {Pair} from "../objects/Pair";
 
 const columns: GridColDef[] = [
     {
@@ -31,10 +32,30 @@ const columns: GridColDef[] = [
         flex: 1,
     },
 ];
-
-const rows = [{id:0,pairedUserId: "admin",type:"",rating:0.0,comment:""}];
+type pairsTable = {
+    id: number,
+    pairedUserId: string,
+    type: string,
+    rating: number,
+    comment: string
+}
 
 export default function PairsPage() {
+    
+    const [rows, setRows] = useState(new  Array<pairsTable>());
+    useEffect(() => {
+        parisRepository.getPairsRecords().then((data) => {
+            setRows( data.list.map((pair: Pair, index: number) => (
+                {
+                    id: index,
+                    pairedUserId: pair.pairedUserId,
+                    type: pair.type,
+                    rating: pair.rating,
+                    comment: pair.comment
+                }
+            )));
+        });
+    }, []);
     return (
         <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
