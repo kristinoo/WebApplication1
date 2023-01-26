@@ -60,18 +60,18 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
     },
 }));
 
-export default function SearchAppBar() {
+export default function AppMenuBar(props: any) {
     const navigate = useNavigate();
     const {logout} = useContext(AuthContext);
     return (
 
-        <AppBar position="static">
+        <AppBar position="static" {...props}>
             <Toolbar>   
                 <Typography
                     variant="h6"
                     noWrap
                     component="div"
-                    sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}>
+                    sx={{flexGrow: 1, display: {xs: 'none', sm: 'block', margin: 9}}}>
                     <Link to="/">
                         WebApp
                     </Link>

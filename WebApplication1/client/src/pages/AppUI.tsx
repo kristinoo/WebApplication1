@@ -1,12 +1,9 @@
 import {useContext} from "react";
 import {AuthContext, AuthContextProvider} from "../contexts/AuthContext";
-import {Grid} from "@mui/material";
+import {BottomNavigation, Container, Grid} from "@mui/material";
 import * as React from 'react';
-import {styled, alpha} from '@mui/material/styles';
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
-
-
 export const AppUI = (props: any) => {
     const {isAuthenticated} = useContext(AuthContext);
 
@@ -29,9 +26,9 @@ export const AppUI = (props: any) => {
                     justifyContent="center">
                     {props.children}
                 </Grid>
-                <Footer/>
+                <Footer item xs={2}/>
             </Grid>
-
         </AuthContextProvider>
     )
 }
+      
