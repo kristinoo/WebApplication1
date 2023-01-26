@@ -37,14 +37,14 @@ export const AuthContextProvider = ({ children }: any) => {
     const [loginName, setLoginName] = useState("");
     const [thigs, theThing] = useState(0);
     const navigate = useNavigate();
-    useEffect(() => {
-        authRepository.getInfo().then((data) => {
-            setState(data);
-            if (!data.isAuthenticated) {
-                navigate("/auth");
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     authRepository.getInfo().then((data) => {
+    //         setState(data);
+    //         if (!data.isAuthenticated) {
+    //             navigate("/auth");
+    //         }
+    //     });
+    // }, []);
 
     const setState = (authInfo: AuthInfo) => {
         setIsAuthenticated(authInfo.isAuthenticated);

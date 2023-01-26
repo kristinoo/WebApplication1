@@ -5,7 +5,7 @@ const AuthPage = () => {
     const [isAuthPage, setIsAuthPage] = useState(true);
 
     return (
-        <AuthenticationForm />
+        <AuthenticationForm /> 
     )
 }
 

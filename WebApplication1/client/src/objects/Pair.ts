@@ -8,7 +8,7 @@
 
     rating: number;
 
-    ratingDescription: string;
+    comment: string;
 };
 
 //запись встречи

@@ -91,9 +91,7 @@ const AuthenticationForm = () => {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link to="/restore">
-                                    Forgot password?
-                                </Link>
+                                
                             </Grid>
                             <Grid item>
                                 <Link to="/reg">

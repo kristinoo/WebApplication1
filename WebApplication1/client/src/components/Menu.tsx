@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar() {
   const navigate = useNavigate();
   return (
-    <Box sx={{ flexGrow: 1 }}>
+   
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -92,7 +92,7 @@ export default function SearchAppBar() {
           </Search>
         </Toolbar>
       </AppBar>
-    </Box>
+   
   );
 }
 function setValue(newValue: any) {

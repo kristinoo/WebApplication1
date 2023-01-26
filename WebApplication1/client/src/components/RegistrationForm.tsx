@@ -10,32 +10,28 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import RegInput from '../objects/RegInput';
-import regRepository from '../repositories/RegRepository';
-import { Link } from 'react-router-dom';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {Link} from 'react-router-dom';
 
 const RegistrationForm = () => {
-    const firstNameRef: React.RefObject<HTMLInputElement> = React.createRef();
-    const lastNameRef: React.RefObject<HTMLInputElement> = React.createRef();
     const loginRef: React.RefObject<HTMLInputElement> = React.createRef();
     const passwordRef: React.RefObject<HTMLInputElement> = React.createRef();
 
     const handleSignup = () => {
-        const regInput: RegInput = {
-            firstName: loginRef.current?.value ?? "",
-            lastName: loginRef.current?.value ?? "",
-            login: loginRef.current?.value ?? "",
-            password: passwordRef.current?.value ?? ""
-        }
-
-        console.log(regInput);
-
-        regRepository
-            .login(regInput)
-            .finally(() => {
-                console.log(regRepository.getInfo());
-            });
+        // const regInput: RegInput = {
+        //     firstName: loginRef.current?.value ?? "",
+        //     lastName: loginRef.current?.value ?? "",
+        //     login: loginRef.current?.value ?? "",
+        //     password: passwordRef.current?.value ?? ""
+        // }
+        //
+        // console.log(regInput);
+        //
+        // regRepository
+        //     .login(regInput)
+        //     .finally(() => {
+        //         console.log(regRepository.getInfo());
+        //     });
     }
 
     const theme = createTheme();
@@ -43,7 +39,7 @@ const RegistrationForm = () => {
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+                <CssBaseline/>
                 <Box
                     sx={{
                         marginTop: 8,
@@ -52,37 +48,14 @@ const RegistrationForm = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
+                    <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                        <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Box component="form" noValidate sx={{mt: 3}}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    inputRef={firstNameRef}
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    inputRef={lastNameRef}
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
-                                />
-                            </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     inputRef={loginRef}
@@ -108,7 +81,7 @@ const RegistrationForm = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                    control={<Checkbox value="allowExtraEmails" color="primary"/>}
                                     label="I accept the privacy policy and accept all terms of use."
                                 />
                             </Grid>
@@ -118,13 +91,13 @@ const RegistrationForm = () => {
                             type="button"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
                             Sign Up
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link to="/auth" >
+                                <Link to="/auth">
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>

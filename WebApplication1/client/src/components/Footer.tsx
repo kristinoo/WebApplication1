@@ -1,3 +1,4 @@
+
 import React, { FC, ReactElement } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 
@@ -6,10 +7,7 @@ export const Footer: FC = (): ReactElement => {
         <Box
             sx={{
                 width: "100%",
-                height: "auto",
                 backgroundColor: "#1976d2",
-                paddingTop: "5mm",
-                paddingBottom: "5mm",
             }}
         >
             <Container maxWidth="lg">
