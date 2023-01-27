@@ -16,11 +16,10 @@ export const AppUI = (props: any) => {
                 alignItems="center"
                 justifyContent="center"
                 style={{minHeight: '100vh'}}>
-                <Menu/>
+                <Menu item xs={2}/>
                 <Grid
-                    item
                     container
-                    xs={12}
+                    item xs={8}
                     direction="row"
                     alignItems="center"
                     justifyContent="center">
